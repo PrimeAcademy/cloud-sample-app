@@ -20,10 +20,26 @@ function loadComments() {
         // aka http://localhost:3000/comments
         url: '/comments',
         method: 'GET'
-    });
-} 
+    })
+        .then((response) => {
+            // code goes here.....
+            console.log('GET /comments 🍇', response);
+        })
+        .catch((err) => {
+            // code goes here....
+            console.log('GET /comments error 🦍', err);
+            alert('Sorry, it\'s a little broke right now')
+        });
 
+    console.log('I\'m not waiting around 🕥')
 
+    // $(this)
+    //     .parent()
+    //     .child()
+    //     .find()
+    //     .sibling()
+    //     .fadeOut();
+}
 
 
 
