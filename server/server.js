@@ -4,9 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 
 let comments = [
-    'Servers are neat',     //  i=0
-    'Well akhshully....',
-    'narwhal bacon something something... undertaker...'
+    'Servers are neat',
+    'and the cloud is ever neater!'
 ];
 
 // Make files in the server/public folder
@@ -17,8 +16,8 @@ app.use(express.static('./server/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Like an "Event Handler"
-// When Jimmy asks for comments
-// http://localhost:3000/comments
+// When the client asks for comments
+// on http://localhost:3000/comments
 // call this function
 //
 // "The GET /comments endpoint"
@@ -26,13 +25,6 @@ app.get('/comments', (req, res) => {
     console.log('Jimmy wants those comments!');
 
     res.send(comments);
-});
-
-// "The GET /comments/first endpoint"
-app.get('/comments/first', (req, res) => {
-    console.log('in /comments/first');
-
-    res.send(comments[0]);
 });
 
 /*
@@ -63,8 +55,10 @@ app.post('/comments', (req, res) => {
     res.sendStatus(201); // 👍
 });
 
-app.listen(3000, () => {
-    console.log('We\'re live! 🎰');
+const PORT = 5000;
+
+app.listen(PORT, () => {
+    console.log(`We're live! 🎰 on port ${PORT}`);
 });
 
 console.log('in server.js! 💼');

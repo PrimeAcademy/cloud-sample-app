@@ -2,14 +2,12 @@ console.log('in client.js 🎀');
 
 // State!
 let comments = [];
-let firstComment;
 
 $(document).ready(onReady);
 
 function onReady() {
     console.log('So ready 🦩');
 
-    loadFirstComment();
     loadComments();
 
     // Event: Jimmy submits the form
@@ -48,22 +46,6 @@ function onAddComment(evt) {
 }
 
 
-function loadFirstComment() {
-    $.ajax({
-        url: '/comments/first',
-        method: 'GET'
-    })
-        .then(response => {
-            console.log('GET /comments/first', response);
-
-            firstComment = response;
-
-            render();
-        })
-        .catch(err => {
-            console.log('GET /comments/first error', err);
-        })
-}
 
 // Get comments (state)
 // from the server
@@ -101,8 +83,6 @@ function loadComments() {
 
 
 function render() {
-    console.log('In render', comments, firstComment);
-
     // Render comments to the DOM
     $('#comments').empty();
     for (let cmt of comments) {
@@ -110,8 +90,6 @@ function render() {
             <li>${cmt}</li>
         `);
     }
-
-    $('#firstComment').text(firstComment);
 }
 
 
